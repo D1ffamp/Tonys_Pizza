@@ -3,6 +3,19 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
 
+class Table(models.Model):
+    """
+    Model to represent a table in the restaurant.
+    The string returns the table no
+    """
+
+    number = models.PositiveIntegerField()
+    capacity = models.PositiveIntegerField()
+
+    def __str__(self):
+        return f"Table {self.number}"
+
+
 class Booking(models.Model):
     """
     Model to represent a booking made by a user.
@@ -22,16 +35,3 @@ class Booking(models.Model):
 
     def __str__(self):
         return f"Booking {self.date} {self.time}"
-
-
-class Table(models.Model):
-    """
-    Model to represent a table in the restaurant.
-    The string returns the table no
-    """
-
-    number = models.PositiveIntegerField()
-    capacity = models.PositiveIntegerField()
-
-    def __str__(self):
-        return f"Table {self.number}"
