@@ -21,4 +21,17 @@ class Booking(models.Model):
         ordering = ['date']
 
     def __str__(self):
-        return f'{self.date} {self.time}'
+        return f"Booking {self.date} {self.time}"
+
+
+class Table(models.Model):
+    """
+    Model to represent a table in the restaurant.
+    The string returns the table no
+    """
+
+    number = models.PositiveIntegerField()
+    capacity = models.PositiveIntegerField()
+
+    def __str__(self):
+        return f"Table {self.number}"
