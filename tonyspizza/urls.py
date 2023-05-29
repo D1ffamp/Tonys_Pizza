@@ -20,5 +20,4 @@ from .views import IndexView, TableListView, BookingListView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', IndexView.as_view(), name='index'),
 ]
