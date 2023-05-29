@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Website</title>
+    <!-- CSS and other static files -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <!-- Navigation menu -->
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/tables/">Tables</a></li>
+                <li><a href="/bookings/">Bookings</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Content from child templates -->
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <!-- Footer content -->
+    </footer>
+
+    <!-- Scripts and other static files -->
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
