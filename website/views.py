@@ -1,18 +1,23 @@
+from django.views.generic import ListView
 from django.shortcuts import render
 from .models import Table, Booking
 
 
-def table_list(request):
-    # Retrieve all tables from the database
-    tables = Table.objects.all()
+class TableListView(ListView):
+    model = Table
+    template_name = 'table_list.html'
+    context_object_name = 'tables'
+    # The 'model' attribute specifies the model to retrieve data from
+    # The 'template_name' attribute specifies the template to render
+    # The 'context_object_name' attribute specifies the name of
+    #  the context variable in the template
 
-    # Render the 'table_list.html' template with the tables data
-    return render(request, 'table_list.html', {'tables': tables})
 
-
-def booking_list(request):
-    # Retrieve all bookings from the database
-    bookings = Booking.objects.all()
-
-    # Render the 'booking_list.html' template with the bookings data
-    return render(request, 'booking_list.html', {'bookings': bookings})
+class BookingListView(ListView):
+    model = Booking
+    template_name = 'booking_list.html'
+    context_object_name = 'bookings'
+    # The 'model' attribute specifies the model to retrieve data from
+    # The 'template_name' attribute specifies the template to render
+    # The 'context_object_name' attribute specifies the name of the
+    #  context variable in the template
