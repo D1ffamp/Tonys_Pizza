@@ -1,0 +1,17 @@
+<!-- table_list.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Table List</h1>
+
+  {% if tables %}
+    <ul>
+      {% for table in tables %}
+        <li>{{ table.name }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No tables available.</p>
+  {% endif %}
+{% endblock %}
