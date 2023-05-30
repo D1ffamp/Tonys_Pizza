@@ -23,5 +23,5 @@ urlpatterns = [
     path('', IndexView.as_view(), name='index'),
     path('tables/', TableListView.as_view(), name='table-list'),
     path('bookings/', BookingListView.as_view(), name='booking-list'),
-    path('login/', login_view, name='login'),
+    path('login/', include('allauth.urls')),
 ]
