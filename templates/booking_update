@@ -1,0 +1,20 @@
+<!-- booking_update.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <h1>Edit Booking</h1>
+
+  {% if user.is_authenticated %}
+    <form method="POST" action="{% url 'booking-update' booking.pk %}">
+      {% csrf_token %}
+
+      <!-- Booking form fields -->
+      <!-- ... -->
+
+      <button type="submit">Update</button>
+    </form>
+  {% else %}
+    <p>Please <a href="{% url 'account_login' %}">log in</a> to update your booking.</p>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,20 @@
+<!-- booking_create.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <h1>Create Booking</h1>
+
+  {% if user.is_authenticated %}
+    <form method="POST" action="{% url 'booking-create' %}">
+      {% csrf_token %}
+
+      <!-- Booking form fields -->
+      <!-- ... -->
+
+      <button type="submit">Create</button>
+    </form>
+  {% else %}
+    <p>Please <a href="{% url 'account_login' %}">log in</a> to create a booking.</p>
+  {% endif %}
+{% endblock %}

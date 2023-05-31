@@ -1,30 +1,19 @@
 <!-- booking_list.html -->
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-  <h1>Bookings</h1>
+  <h1>Booking List</h1>
 
   {% if user.is_authenticated %}
     <h3>Welcome, {{ user.username }}!</h3>
 
-    <!-- Booking Form -->
-    <form method="POST" action="{% url 'booking-create' %}">
-      {% csrf_token %}
-
-      <!-- Form fields here -->
-
-      <button type="submit">Book</button>
-    </form>
-
-    <hr>
-
-    <!-- Bookings List -->
     {% if bookings %}
       <h2>Your Bookings:</h2>
       <ul>
         {% for booking in bookings %}
           <li>
-            <!-- Display booking details here -->
+            {{ booking.customer_name }} - Table {{ booking.table_number }} - {{ booking.booking_date }} - {{ booking.booking_time }}
 
             <!-- Edit Button -->
             <a href="{% url 'booking-update' booking.pk %}">Edit</a>
@@ -42,6 +31,6 @@
     {% endif %}
 
   {% else %}
-    <p>Please <a href="{% url 'account_login' %}">log in</a> to make a booking.</p>
+    <p>Please <a href="{% url 'account_login' %}">log in</a> to view your bookings.</p>
   {% endif %}
 {% endblock %}

@@ -4,6 +4,7 @@ from .models import Table, Booking
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
+from .forms import BookingForm
 
 
 class TableListView(ListView):
@@ -42,3 +43,40 @@ def login_view(request):
 def booking_list(request):
     bookings = Booking.objects.filter(user=request.user)
     return render(request, 'booking_list.html', {'bookings': bookings})
+
+
+@login_required
+def booking_create(request):
+    if request.method == 'POST':
+        form = BookingForm(request.POST)
+        if form.is_valid():
+            booking = form.save(commit=False)
+            booking.user = request.user
+            booking.save()
+            return redirect('booking-list')
+    else:
+        form = BookingForm()
+    return render(request, 'booking_create.html', {'form': form})
+
+
+@login_required
+def booking_update(request, pk):
+    booking = get_object_or_404(Booking, pk=pk, user=request.user)
+    if request.method == 'POST':
+        form = BookingForm(request.POST, instance=booking)
+        if form.is_valid():
+            form.save()
+            return redirect('booking-list')
+    else:
+        form = BookingForm(instance=booking)
+    return render(request, 'booking_update.html',
+                  {'form': form, 'booking': booking})
+
+
+@login_required
+def booking_delete(request, pk):
+    booking = get_object_or_404(Booking, pk=pk, user=request.user)
+    if request.method == 'POST':
+        booking.delete()
+        return redirect('booking-list')
+    return render(request, 'booking_delete.html', {'booking': booking})
