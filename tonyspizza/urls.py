@@ -24,7 +24,11 @@ from website.views import (
     login_view,
     BookingCreateView,
     BookingUpdateView,
-    BookingDeleteView
+    BookingDeleteView,
+    booking_create,
+    booking_update,
+    booking_delete,
+
 )
 
 

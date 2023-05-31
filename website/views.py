@@ -1,10 +1,17 @@
-from django.views.generic import ListView, TemplateView
+from django.views.generic import (
+    ListView,
+    TemplateView,
+    CreateView,
+    UpdateView,
+    DeleteView
+)
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Table, Booking
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from .forms import BookingForm
+from django.urls import reverse_lazy
 
 
 class TableListView(ListView):
@@ -80,3 +87,62 @@ def booking_delete(request, pk):
         booking.delete()
         return redirect('booking-list')
     return render(request, 'booking_delete.html', {'booking': booking})
+
+
+class BookingCreateView(CreateView):
+    """
+    A view that handles the creation of new bookings.
+
+    Inherits from Django's CreateView class and provides the necessary
+    attributes to customize its behavior.
+
+    Attributes:
+        template_name (str): The name of the template used to render the view.
+        form_class (Form): The form used for creating the booking.
+        success_url (str): The URL to redirect to after a successful
+        form submission.
+    """
+    template_name = 'booking_create.html'
+    form_class = BookingForm
+    success_url = reverse_lazy('booking-list')
+
+
+class BookingUpdateView(UpdateView):
+    """
+    A view that handles the updating of bookings.
+
+    Inherits from Django's UpdateView class and provides the necessary
+     attributes to customize its behavior.
+
+    Attributes:
+        template_name (str): The name of the template used to render
+         the view ('booking_update.html').
+        form_class (Form): The form used for updating
+         the booking (BookingForm).
+        success_url (str): The URL to redirect to after
+         a successful form submission ('booking-list').
+    """
+
+    template_name = 'booking_update.html'
+    form_class = BookingForm
+    success_url = reverse_lazy('booking-list')
+
+
+class BookingDeleteView(DeleteView):
+    """
+    A view that handles the deletion of bookings.
+
+    Inherits from Django's DeleteView class and provides the necessary
+     attributes to customize its behavior.
+
+    Attributes:
+        template_name (str): The name of the template used to
+         render the view ('booking_delete.html').
+        model (Model): The model to use for deleting the booking (Booking).
+        success_url (str): The URL to redirect to
+         after a successful deletion ('booking-list').
+    """
+
+    template_name = 'booking_delete.html'
+    model = Booking
+    success_url = reverse_lazy('booking-list')
