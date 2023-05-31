@@ -2,11 +2,13 @@
 
 {% block content %}
 <h2>Bookings</h2>
-<ul>
-    {% for booking in bookings %}
-    <li>{{ booking }}</li>
-    {% empty %}
-    <li>No bookings available</li>
-    {% endfor %}
-</ul>
+<form method="POST" action="{% url 'create-booking' %}">
+    {% csrf_token %}
+    <!-- Add form fields for booking information -->
+    <input type="text" name="customer_name" placeholder="Customer Name">
+    <input type="text" name="table_number" placeholder="Table Number">
+    <input type="date" name="booking_date">
+    <button type="submit">Create Booking</button>
+</form>
+
 {% endblock %}
