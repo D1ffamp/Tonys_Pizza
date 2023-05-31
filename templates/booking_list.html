@@ -1,7 +1,5 @@
 <!-- booking_list.html -->
-
 {% extends 'base.html' %}
-{% load static %}
 
 {% block content %}
   <h1>Bookings</h1>
@@ -13,35 +11,8 @@
     <form method="POST" action="{% url 'booking-create' %}">
       {% csrf_token %}
 
-      <!-- Table Field -->
-      <div class="form-group">
-        <label for="table">Table:</label>
-        <select name="table" id="table" required>
-          {% for table in tables %}
-            <option value="{{ table.pk }}">Table {{ table.number }}</option>
-          {% endfor %}
-        </select>
-      </div>
+      <!-- Form fields here -->
 
-      <!-- Date Field -->
-      <div class="form-group">
-        <label for="date">Date:</label>
-        <input type="date" name="date" id="date" required>
-      </div>
-
-      <!-- Time Field -->
-      <div class="form-group">
-        <label for="time">Time:</label>
-        <input type="time" name="time" id="time" required>
-      </div>
-
-      <!-- Number of Guests Field -->
-      <div class="form-group">
-        <label for="num_guests">Number of Guests:</label>
-        <input type="number" name="num_guests" id="num_guests" required>
-      </div>
-
-      <!-- Submit Button -->
       <button type="submit">Book</button>
     </form>
 
@@ -53,7 +24,7 @@
       <ul>
         {% for booking in bookings %}
           <li>
-            Table {{ booking.table.number }} - Date: {{ booking.date }} - Time: {{ booking.time }} - Guests: {{ booking.num_guests }}
+            <!-- Display booking details here -->
 
             <!-- Edit Button -->
             <a href="{% url 'booking-update' booking.pk %}">Edit</a>
@@ -71,6 +42,6 @@
     {% endif %}
 
   {% else %}
-    <p>Please <a href="{% url 'login' %}">log in</a> to make a booking.</p>
+    <p>Please <a href="{% url 'account_login' %}">log in</a> to make a booking.</p>
   {% endif %}
 {% endblock %}
