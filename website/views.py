@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import ListView, TemplateView, CreateView, UpdateView, DeleteView
-from allauth.account.views import LoginView  # Import the LoginView from allauth
+from allauth.account.views import LoginView  # Import LoginView from allauth
 from .forms import BookingForm
 from .models import Table, Booking
 
@@ -144,3 +144,21 @@ class BookingDeleteView(LoginRequiredMixin, DeleteView):
         Returns the queryset of bookings for the authenticated user.
         """
         return super().get_queryset().filter(user=self.request.user)
+
+
+class ReservationView(LoginRequiredMixin, TemplateView):
+    template_name = 'reservation.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = BookingForm()
+        return context
+
+    def post(self, request, *args, **kwargs):
+        form = BookingForm(request.POST)
+        if form.is_valid():
+            booking = form.save(commit=False)
+            booking.user = request.user
+            booking.save()
+            return redirect('booking-list')
+        return self.render_to_response({'form': form})
