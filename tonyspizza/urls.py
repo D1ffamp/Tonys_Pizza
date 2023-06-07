@@ -21,14 +21,10 @@ from website.views import (
     IndexView,
     TableListView,
     BookingListView,
-    login_view,
+    CustomLoginView,
     BookingCreateView,
     BookingUpdateView,
     BookingDeleteView,
-    booking_create,
-    booking_update,
-    booking_delete,
-
 )
 
 
@@ -37,8 +33,8 @@ urlpatterns = [
     path('', IndexView.as_view(), name='index'),
     path('tables/', TableListView.as_view(), name='table-list'),
     path('bookings/', BookingListView.as_view(), name='booking-list'),
-    path('bookings/create/', booking_create, name='booking-create'),
-    path('bookings/<int:pk>/update/', booking_update, name='booking-update'),
-    path('bookings/<int:pk>/delete/', booking_delete, name='booking-delete'),
-    path('accounts/', include('allauth.urls')),
+    path('bookings/create/', BookingCreateView.as_view(), name='booking-create'),
+    path('bookings/<int:pk>/update/', BookingUpdateView.as_view(), name='booking-update'),
+    path('bookings/<int:pk>/delete/', BookingDeleteView.as_view(), name='booking-delete'),
+    path('accounts/login/', CustomLoginView.as_view(), name='account_login'),
 ]
