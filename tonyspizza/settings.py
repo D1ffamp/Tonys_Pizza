@@ -31,7 +31,7 @@ SECRET_KEY = SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['tonys-pizza.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['tonys-pizza.herokuapp.com', 'localhost', '8000-d1ffamp-tonyspizza-iuzh6lkaksw.ws-eu98.gitpod.io']
 
 
 # Application definition
@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cloudinary',
     'django_summernote',
+    'crispy_forms',
     'website',
 ]
 
