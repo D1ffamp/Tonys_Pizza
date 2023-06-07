@@ -1,3 +1,4 @@
+<!-- booking_list.html -->
 {% extends 'base.html' %}
 {% load static %}
 
@@ -12,30 +13,26 @@
       <ul>
         {% for booking in bookings %}
           <li>
-            {{ booking.customer_name }} - Table {{ booking.table_number }} - {{ booking.booking_date }} - {{ booking.booking_time }}
+            {{ booking.user }} - Table {{ booking.table }} - {{ booking.date }} - {{ booking.time }}
 
             <!-- Edit Button -->
-            <a href="{% url 'booking-update' booking.pk %}">Edit</a>
+            {% if user == booking.user %}
+              <a href="{% url 'booking-update' booking.pk %}">Edit</a>
+            {% endif %}
 
             <!-- Delete Button -->
-            <form method="POST" action="{% url 'booking-delete' booking.pk %}">
-              {% csrf_token %}
-              <button type="submit">Delete</button>
-            </form>
+            {% if user == booking.user %}
+              <form method="POST" action="{% url 'booking-delete' booking.pk %}">
+                {% csrf_token %}
+                <button type="submit">Delete</button>
+              </form>
+            {% endif %}
           </li>
         {% endfor %}
       </ul>
     {% else %}
       <p>No bookings found.</p>
     {% endif %}
-
-    <h2>Create a Booking:</h2>
-    <form method="POST" action="{% url 'booking-create' %}">
-      {% csrf_token %}
-      {{ form.as_p }}
-
-      <button type="submit">Create</button>
-    </form>
 
   {% else %}
     <p>Please <a href="{% url 'account_login' %}">log in</a> to view your bookings.</p>
