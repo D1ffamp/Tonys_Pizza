@@ -8,13 +8,11 @@
   {% if user.is_authenticated %}
     <form method="POST" action="{% url 'booking-update' booking.pk %}">
       {% csrf_token %}
-
-      <!-- Booking form fields -->
-      <!-- ... -->
-
+      {{ form.as_p }}
       <button type="submit">Update</button>
     </form>
   {% else %}
     <p>Please <a href="{% url 'account_login' %}">log in</a> to update your booking.</p>
   {% endif %}
 {% endblock %}
+

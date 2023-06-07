@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>My Reservations</h1>
+
+  <a href="{% url 'booking-create' %}">Create New Booking</a>
+
+  <ul>
+    {% for booking in bookings %}
+      <li>
+        Table: {{ booking.table }}
+        Date: {{ booking.date }}
+        Time: {{ booking.time }}
+        <a href="{% url 'booking-update' booking.pk %}">Update</a>
+        <a href="{% url 'booking-delete' booking.pk %}">Delete</a>
+      </li>
+    {% empty %}
+      <li>No bookings found.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

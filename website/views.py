@@ -126,7 +126,8 @@ class BookingDeleteView(LoginRequiredMixin, DeleteView):
     """
     A view that handles the deletion of bookings.
 
-    Inherits from Django's DeleteView class and provides the necessary attributes to customize its behavior.
+    Inherits from Django's DeleteView class and provides
+    the necessary attributes to customize its behavior.
 
     Attributes:
         model (Model): The model to use for deleting the booking (Booking).
