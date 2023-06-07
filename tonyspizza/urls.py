@@ -36,5 +36,6 @@ urlpatterns = [
     path('bookings/create/', BookingCreateView.as_view(), name='booking-create'),
     path('bookings/<int:pk>/update/', BookingUpdateView.as_view(), name='booking-update'),
     path('bookings/<int:pk>/delete/', BookingDeleteView.as_view(), name='booking-delete'),
+    path('bookings/reservation/', ReservationView.as_view(), name='reservation'),
     path('accounts/login/', CustomLoginView.as_view(), name='account_login'),
 ]
