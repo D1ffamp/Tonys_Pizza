@@ -49,7 +49,8 @@ class IndexView(TemplateView):
     """
     A view that renders the index page.
 
-    Inherits from Django's TemplateView class to provide a simple template view for the index page.
+    Inherits from Django's TemplateView class to provide a simple
+    template view for the index page.
 
     Attributes:
         template_name (str): The name of the template used to render the view.
@@ -62,10 +63,11 @@ class CustomLoginView(LoginView):
     """
     A view that handles user authentication and login.
 
-    Inherits from the LoginView provided by AllAuth to provide a customized login view.
+    Inherits from the LoginView provided by AllAuth to provide a login view.
 
     Attributes:
-        template_name (str): The name of the template used to render the view ('login.html').
+        template_name (str): The name of the
+        template used to render the view login.html').
     """
 
     template_name = 'login.html'
@@ -75,13 +77,15 @@ class BookingCreateView(LoginRequiredMixin, CreateView):
     """
     A view that handles the creation of new bookings.
 
-    Inherits from Django's CreateView class and provides the necessary attributes to customize its behavior.
+    Inherits from Django's CreateView class and provides the
+    necessary attributes to customize its behavior.
 
     Attributes:
         model (Model): The model to use for creating the booking (Booking).
         form_class (Form): The form used for creating the booking (BookingForm).
         template_name (str): The name of the template used to render the view.
-        success_url (str): The URL to redirect to after a successful form submission ('booking-list').
+        success_url (str):
+        The URL to redirect to after a successful form submission ('booking-list').
     """
 
     model = Booking
@@ -91,7 +95,8 @@ class BookingCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         """
-        Saves the form and sets the user of the booking to the authenticated user.
+        Saves the form and sets the user
+        of the booking to the authenticated user.
         """
         form.instance.user = self.request.user
         return super().form_valid(form)
@@ -101,13 +106,16 @@ class BookingUpdateView(LoginRequiredMixin, UpdateView):
     """
     A view that handles the updating of bookings.
 
-    Inherits from Django's UpdateView class and provides the necessary attributes to customize its behavior.
+    Inherits from Django's UpdateView class and provides the necessary
+    attributes to customize its behavior.
 
     Attributes:
         model (Model): The model to use for updating the booking (Booking).
-        form_class (Form): The form used for updating the booking (BookingForm).
+        form_class (Form):
+        The form used for updating the booking (BookingForm).
         template_name (str): The name of the template used to render the view.
-        success_url (str): The URL to redirect to after a successful form submission ('booking-list').
+        success_url (str): The URL to redirect to after a
+        successful form submission ('booking-list').
     """
 
     model = Booking
@@ -132,7 +140,8 @@ class BookingDeleteView(LoginRequiredMixin, DeleteView):
     Attributes:
         model (Model): The model to use for deleting the booking (Booking).
         template_name (str): The name of the template used to render the view.
-        success_url (str): The URL to redirect to after a successful deletion ('booking-list').
+        success_url (str):
+        The URL to redirect to after a successful deletion ('booking-list').
     """
 
     model = Booking
@@ -147,7 +156,7 @@ class BookingDeleteView(LoginRequiredMixin, DeleteView):
 
 
 class ReservationView(LoginRequiredMixin, TemplateView):
-    template_name = 'reservation.html'
+    template_name = 'reservations.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

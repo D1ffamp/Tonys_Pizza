@@ -25,6 +25,7 @@ from website.views import (
     BookingCreateView,
     BookingUpdateView,
     BookingDeleteView,
+    ReservationView,
 )
 
 
