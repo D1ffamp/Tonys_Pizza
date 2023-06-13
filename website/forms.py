@@ -20,7 +20,8 @@ class BookingForm(forms.ModelForm):
         ('10:00 PM', '10:00 PM'),
     )
 
-    booking_time = forms.ChoiceField(choices=TIME_CHOICES)
+    date = forms.DateField(widget=forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}))
+    time = forms.ChoiceField(choices=TIME_CHOICES, widget=forms.Select(attrs={'class': 'form-control'}))
 
     class Meta:
         model = Booking

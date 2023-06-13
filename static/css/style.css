@@ -12,22 +12,17 @@ header {
 #navbar {
   display: flex;
   justify-content: flex-end;
-  align-items: center;
   padding: 10px;
 }
 
-.navbar-brand {
-  margin-right: auto;
-}
-
 .navbar-nav {
-  display: flex;
-  align-items: center;
+  margin-left: auto;
 }
 
 .nav-item {
   margin-left: 10px;
 }
+
 
 
 /* Main content */
